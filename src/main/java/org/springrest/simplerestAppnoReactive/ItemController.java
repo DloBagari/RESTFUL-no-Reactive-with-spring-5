@@ -10,13 +10,20 @@ import java.util.Map;
 //define this class is RUST controller
 @RestController
 //define the request path
-@RequestMapping("/items")
+@RequestMapping("/")
 public class ItemController {
     @Autowired
     ItemService itemService;
     //define this method is the response for empty string
     @ResponseBody
     @RequestMapping("")
+    public Map<String, Object> state() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("state", "ok");
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping("/items")
     public List<Item> allItems() {
         return itemService.getItems();
     }
